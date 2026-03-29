@@ -1,0 +1,27 @@
+name: EpsilonBadEat
+version: '${project.version}'
+main: ru.epsilon.badeat.EpsilonBadEat
+api-version: '1.21'
+description: Плагин порчи еды с интеграцией EpsilonDoctor
+author: Epsilon
+website: epsilon.ru
+
+softdepend:
+  - EpsilonDoctor
+  - ItemsAdder
+
+commands:
+  еда:
+    description: Основная команда плагина
+    aliases: [edible, food]
+    usage: |
+      /еда проверить - Проверить срок годности предмета в руке
+      /еда перезагрузить - Перезагрузить конфигурацию (только для админов)
+
+permissions:
+  epsilonbadeat.use:
+    description: Доступ к команде проверки
+    default: true
+  epsilonbadeat.admin:
+    description: Доступ к административным командам
+    default: op
