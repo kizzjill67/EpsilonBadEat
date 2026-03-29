@@ -83,7 +83,7 @@ public class FoodListener implements Listener {
             
             // Сообщаем игроку
             String msg = plugin.getConfig().getString("messages.spoiled-food-eat", "&cВы попытались съесть испорченную еду!");
-            player.sendMessage(plugin.getServer().getColorChar() + msg.replace("&", "§"));
+           player.sendMessage(msg.replace("&", "§"));
 
             // Интеграция с EpsilonDoctor через консоль
             if (plugin.getConfig().getBoolean("epsilon-doctor.enabled")) {
