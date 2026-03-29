@@ -1,0 +1,19 @@
+name: EpsilonBadEat
+version: '1.0.0'
+main: com.epsilon.badeat.EpsilonBadEat
+api-version: '1.21'
+authors: [Babajewski]
+description: Плагин порчи еды для сервера Epsilon.
+commands:
+  еда:
+    description: Управление едой
+    usage: /<command> помощь
+    aliases: [food]
+permissions:
+  epsilonbadeat.use:
+    description: Доступ к проверке еды
+    default: true
+  epsilonbadeat.admin:
+    description: Доступ к админ-командам
+    default: op
+softdepend: [EpsilonDoctor, ItemsAdder]
