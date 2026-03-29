@@ -1,0 +1,59 @@
+# Интервал проверки (в тиках, 20 тиков = 1 секунда)
+check-interval-ticks: 400
+check-online-players-only: true
+
+# Сроки годности (m=мин, h=час, d=день)
+food-shelf-life:
+  BREAD: 2d
+  COOKED_BEEF: 12h
+  APPLE: 3d
+  CARROT: 5d
+  POTATO: 5d
+  BAKED_POTATO: 2d
+  MUSHROOM_STEW: 1d
+  RABBIT_STEW: 1d
+  BEETROOT_SOUP: 1d
+  COOKED_CHICKEN: 12h
+  COOKED_MUTTON: 12h
+  COOKED_PORKCHOP: 12h
+  COOKED_COD: 8h
+  COOKED_SALMON: 8h
+  GOLDEN_APPLE: 30d
+  GOLDEN_CARROT: 30d
+
+# Настройки бочки (холодильника)
+storage:
+  enabled: true
+  height: 3 # Сколько блоков земли/камня должно быть над бочкой
+  required-blocks:
+    - STONE
+    - COBBLESTONE
+    - DIRT
+    - DEEPSLATE
+  multiplier: 2.0 # Во сколько раз дольше хранится еда
+  container-types:
+    - CHEST
+    - BARREL
+    - SHULKER_BOX
+
+# Что получается при порче
+spoiled-item:
+  material: ROTTEN_FLESH
+  display-name: "&cИспорченная еда"
+  lore:
+    - "&7Непригодна к употреблению"
+
+# Интеграция с EpsilonDoctor
+epsilon-doctor:
+  enabled: true
+  disease-on-spoiled: "пищевое_отравление"
+  # Команда, которая выполнится от имени консоли
+  command: "doctor infect %player% пищевое_отравление"
+
+# Сообщения
+messages:
+  prefix: "&7[&cЕда&7] "
+  spoiled-food-eat: "&cВы попытались съесть испорченную еду! Вы заболели."
+  spoiled-food-replace: "&cВаша еда испортилась и превратилась в гнилую плоть."
+  food-check: "&aСрок годности: &e%time_left%"
+  food-check-fresh: "&aЕда свежая."
