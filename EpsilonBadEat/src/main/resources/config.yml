@@ -1,0 +1,97 @@
+# Проверка еды
+check-interval-ticks: 400   # как часто проверять (20 сек, 1 сек = 20 тиков)
+check-online-players-only: true   # проверять только игроков онлайн
+
+# Сроки годности для еды (формат: материал: срок)
+# срок: 30m, 2h, 5d, 0 = бесконечно
+food-shelf-life:
+  BREAD: 2d
+  COOKED_BEEF: 12h
+  APPLE: 3d
+  CARROT: 5d
+  POTATO: 5d
+  BAKED_POTATO: 2d
+  MUSHROOM_STEW: 1d
+  RABBIT_STEW: 1d
+  BEETROOT_SOUP: 1d
+  COOKED_CHICKEN: 12h
+  COOKED_MUTTON: 12h
+  COOKED_PORKCHOP: 12h
+  COOKED_COD: 8h
+  COOKED_SALMON: 8h
+  GOLDEN_APPLE: 7d
+  ENCHANTED_GOLDEN_APPLE: 30d
+  MELON_SLICE: 3d
+  SWEET_BERRIES: 4d
+  GLOW_BERRIES: 4d
+  DRIED_KELP: 10d
+  COOKIE: 5d
+  PUMPKIN_PIE: 3d
+  CAKE: 2d
+  CHORUS_FRUIT: 5d
+  POISONOUS_POTATO: 1d
+  BEEF: 6h
+  CHICKEN: 6h
+  MUTTON: 6h
+  PORKCHOP: 6h
+  COD: 4h
+  SALMON: 4h
+  TROPICAL_FISH: 4h
+  PUFFERFISH: 4h
+  ROTTEN_FLESH: 1d
+  SPIDER_EYE: 2d
+
+# Настройки бочки (холодильника)
+storage:
+  enabled: true
+  height: 3                     # сколько блоков над контейнером
+  required-blocks:              # какие блоки должны быть в этой колонне
+    - STONE
+    - COBBLESTONE
+    - DIRT
+    - DEEPSLATE
+    - COBBLED_DEEPSLATE
+    - GRANITE
+    - DIORITE
+    - ANDESITE
+    - SANDSTONE
+    - RED_SANDSTONE
+    - END_STONE
+    - NETHERRACK
+    - BASALT
+    - BLACKSTONE
+  multiplier: 2.0               # во сколько раз продлевается срок годности
+  # тип контейнера, который считается бочкой (можно указать несколько)
+  container-types:
+    - CHEST
+    - BARREL
+    - SHULKER_BOX
+    - TRAPPED_CHEST
+
+# Что выпадает при порче
+spoiled-item:
+  material: ROTTEN_FLESH
+  display-name: "&cИспорченная еда"
+  lore:
+    - "&7Непригодна к употреблению"
+
+# Интеграция с EpsilonDoctor
+epsilon-doctor:
+  enabled: true
+  disease-on-spoiled: "пищевое_отравление"
+  # способ вызова: команда (выполняется от консоли) или API (если плагин предоставляет)
+  method: "COMMAND"   # или API
+  command: "doctor infect %player% пищевое_отравление"
+
+# Сообщения
+messages:
+  prefix: "&7[&cЕда&7] "
+  spoiled-food-eat: "&cВы попытались съесть испорченную еду! Вы заболели."
+  spoiled-food-replace: "&cВаша еда испортилась и превратилась в гнилую плоть."
+  food-check: "&aСрок годности: &e%time_left%"
+  food-check-fresh: "&aЕда свежая."
+  no-permission: "&cУ вас нет прав на эту команду!"
+  config-reloaded: "&aКонфигурация перезагружена!"
+  not-food: "&cЭто не еда!"
+  reload-command: "перезагрузить"
+  check-command: "проверить"
