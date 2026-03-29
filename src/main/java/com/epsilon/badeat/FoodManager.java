@@ -105,7 +105,7 @@ public class FoodManager {
         ItemMeta meta = rotten.getItemMeta();
         
         String name = plugin.getConfig().getString("spoiled-item.display-name", "&cИспорченная еда");
-        meta.setDisplayName(plugin.getServer().getColorChar() + name.replace("&", "§")); // Упрощенная замена цветов
+        meta.setDisplayName(name.replace("&", "§")); // Упрощенная замена цветов
         
         List<String> lore = plugin.getConfig().getStringList("spoiled-item.lore");
         if (!lore.isEmpty()) {
