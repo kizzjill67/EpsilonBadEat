@@ -1,6 +1,7 @@
 package com.epsilon.badeat;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
@@ -11,7 +12,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent; // Для новых версий PlayerAttemptPickupItemEvent
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -83,7 +84,7 @@ public class FoodListener implements Listener {
             
             // Сообщаем игроку
             String msg = plugin.getConfig().getString("messages.spoiled-food-eat", "&cВы попытались съесть испорченную еду!");
-           player.sendMessage(msg.replace("&", "§"));
+            player.sendMessage(msg.replace("&", "§"));
 
             // Интеграция с EpsilonDoctor через консоль
             if (plugin.getConfig().getBoolean("epsilon-doctor.enabled")) {
@@ -106,17 +107,18 @@ public class FoodListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Block placed = event.getBlockPlaced();
         // Проверяем блоки под новым блоком (вдруг поставили крышку над бочкой)
-        checkBelowForContainer(placed.getLocation().subtract(0, 1, 0));
+        checkBelowForContainer(placed.getLocation().clone().subtract(0, 1, 0));
     }
     
     // 6. Ломание блока (вдруг сняли крышку)
     @EventHandler
     public void onBlockBreak(org.bukkit.event.block.BlockBreakEvent event) {
-         checkBelowForContainer(event.getBlock().getLocation().subtract(0, 1, 0));
+         checkBelowForContainer(event.getBlock().getLocation().clone().subtract(0, 1, 0));
     }
 
-    private void checkBelowForContainer(Block block) {
-        if (block.getType().equals(Material.BARREL) || block.getType().equals(Material.CHEST)) {
+    private void checkBelowForContainer(Location loc) {
+        Block block = loc.getBlock();
+        if (block.getType() == Material.BARREL || block.getType() == Material.CHEST) {
              // Тут можно добавить логику пересчета бонусов для всех предметов внутри, 
              // если бочка перестала быть "холодильником".
              // Для простоты в этой версии бонус применяется только при взаимодействии.
